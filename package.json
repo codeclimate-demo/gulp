@@ -59,9 +59,8 @@
   "scripts": {
     "prepublish": "marked-man --name gulp docs/CLI.md > gulp.1",
     "lint": "eslint . && jscs *.js bin/ lib/ test/",
-    "pretest": "npm run lint",
     "test": "mocha --reporter spec",
-    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+    "coverage": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | codeclimate-test-reporter && rm -rf ./coverage"
   },
   "engines": {
     "node": ">= 0.9"
