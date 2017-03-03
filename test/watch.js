@@ -29,27 +29,7 @@ describe('gulp', function() {
       }, writeTimeout);
     };
 
-    it('should call the function when file changes: no options', function(done) {
 
-      // Arrange
-      var tempFile = path.join(outpath, 'watch-func.txt');
-      fs.writeFile(tempFile, tempFileContent, function() {
-
-        // Assert: it works if it calls done
-        var watcher = gulp.watch(tempFile, function(evt) {
-          should.exist(evt);
-          should.exist(evt.path);
-          should.exist(evt.type);
-          evt.type.should.equal('changed');
-          evt.path.should.equal(path.resolve(tempFile));
-          watcher.end();
-          done();
-        });
-
-        // Act: change file
-        writeFileWait(tempFile, tempFileContent + ' changed');
-      });
-    });
 
     it('should call the function when file changes: w/ options', function(done) {
 
