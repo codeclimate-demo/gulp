@@ -8,6 +8,8 @@ var vfs = require('vinyl-fs');
 var testvar = "testvar1"
 var testvar2 = "testvar2"
 var testvar3 = "testvar3"
+var testvar4 = "testvar4"
+var testvar5 = "testvar5"
 
 function Gulp() {
   Orchestrator.call(this);
