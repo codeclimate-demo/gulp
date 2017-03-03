@@ -1,6 +1,7 @@
 'use strict';
 
 var taskTree = require('../lib/taskTree');
+var taskList = require('../lib/taskList');
 var should = require('should');
 
 require('mocha');
