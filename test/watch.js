@@ -31,27 +31,7 @@ describe('gulp', function() {
 
 
 
-    it('should call the function when file changes: w/ options', function(done) {
 
-      // Arrange
-      var tempFile = path.join(outpath, 'watch-func-options.txt');
-      fs.writeFile(tempFile, tempFileContent, function() {
-
-        // Assert: it works if it calls done
-        var watcher = gulp.watch(tempFile, { debounceDelay: 5 }, function(evt) {
-          should.exist(evt);
-          should.exist(evt.path);
-          should.exist(evt.type);
-          evt.type.should.equal('changed');
-          evt.path.should.equal(path.resolve(tempFile));
-          watcher.end();
-          done();
-        });
-
-        // Act: change file
-        writeFileWait(tempFile, tempFileContent + ' changed');
-      });
-    });
 
     it('should not drop options when no callback specified', function(done) {
       // Arrange
@@ -78,44 +58,7 @@ describe('gulp', function() {
       });
     });
 
-    it('should run many tasks: w/ options', function(done) {
-      // Arrange
-      var tempFile = path.join(outpath, 'watch-task-options.txt');
-      var task1 = 'task1';
-      var task2 = 'task2';
-      var task3 = 'task3';
-      var a = 0;
-      var timeout = writeTimeout * 2.5;
-
-      fs.writeFile(tempFile, tempFileContent, function() {
-
-        gulp.task(task1, function() {
-          a++;
-        });
-        gulp.task(task2, function() {
-          a += 10;
-        });
-        gulp.task(task3, function() {
-          throw new Error('task3 called!');
-        });
-
-        // It works if it calls the task
-        var config = { debounceDelay: timeout / 2 };
-        var watcher = gulp.watch(tempFile, config, [task1, task2]);
-
-        // Assert
-        setTimeout(function() {
-          a.should.equal(11); // Task1 and task2
-
-          gulp.reset();
-          watcher.end();
-          done();
-        }, timeout);
-
-        // Act: change file
-        writeFileWait(tempFile, tempFileContent + ' changed');
-      });
-    });
+  
 
     it('should run many tasks: no options', function(done) {
       // Arrange
