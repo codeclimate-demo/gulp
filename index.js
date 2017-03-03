@@ -5,6 +5,9 @@ var Orchestrator = require('orchestrator');
 var gutil = require('gulp-util');
 var deprecated = require('deprecated');
 var vfs = require('vinyl-fs');
+var testvar = "testvar1"
+var testvar2 = "testvar2"
+var testvar3 = "testvar3"
 
 function Gulp() {
   Orchestrator.call(this);
